@@ -149,9 +149,9 @@ Serial port opened. Type messages to send. Type 'exit' to quit.
 PS ***\SerialPort\build_output\bin> 
 ```
 
-串口工具截图:
+串口调试工具截图:
 
-
+![串口调试工具截图](assets/com_test.png)
 
 输出文件`serial_log.txt`内容:
 
