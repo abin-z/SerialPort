@@ -133,19 +133,31 @@ int main()
 ```
 
 
-运行结果:
+控制台运行结果:
 ```sh
-PS ***\serialport\build_output\bin\Debug> ."/serialport/build_output/bin/Debug/serialportTest.exe"
+PS ***\SerialPort\build_output\bin> .\serialportTest.exe
 Available serial ports:
-Port: COM1 | Description: 通信端口 (COM1) | Hardware ID: ACPI\VEN_PNP&DEV_0501
-Port: COM2 | Description: ELTIMA Virtual Serial Port (COM2->COM3) | Hardware ID: EVSERIAL
-Port: COM3 | Description: ELTIMA Virtual Serial Port (COM3->COM2) | Hardware ID: EVSERIAL
-Port: COM4 | Description: ELTIMA Virtual Serial Port (COM4->COM5) | Hardware ID: EVSERIAL
-Port: COM5 | Description: ELTIMA Virtual Serial Port (COM5->COM4) | Hardware ID: EVSERIAL
-[INFO] [COM5@115200] SerialPort opened
-[DATA] Welcome to UartAssist
-[INFO] [COM5@115200] SerialPort closed
-PS ***\serialport\build_output\bin\Debug> 
+Port: COM1 | Description: Electronic Team Virtual Serial Port (COM1->COM2) | Hardware ID: EVSERIAL9
+Port: COM2 | Description: Electronic Team Virtual Serial Port (COM2->COM1) | Hardware ID: EVSERIAL9
+Enter the serial port name to use (e.g., COM5 or /dev/ttyUSB0): COM1
+[INFO] [COM1@115200] SerialPort opened
+Serial port opened. Type messages to send. Type 'exit' to quit.
+> hello world
+> hello serialport
+> exit
+[INFO] [COM1@115200] SerialPort closed
+PS ***\SerialPort\build_output\bin> 
+```
+
+串口工具截图:
+
+
+
+输出文件`serial_log.txt`内容:
+
+```txt
+57 65 6C 63 6F 6D 65 20 74 6F 20 55 61 72 74 41 73 73 69 73 74 
+AA BB CC DD EE FF 
 ```
 
 ### 说明
