@@ -11,15 +11,17 @@ set(CMAKE_SYSTEM_PROCESSOR aarch64)
 # -----------------------------------------------------
 # 指定交叉编译器路径 (需更改为实际路径)
 # -----------------------------------------------------
+set(TOOLCHAIN_ROOT "/opt/linux/x86-arm/aarch64-v01c01-linux-gnu-gcc")
+
 # 注意：这里是 host 上的交叉编译器，生成的二进制是运行在 target 上的
-set(CMAKE_C_COMPILER   /opt/linux/x86-arm/aarch64-v01c01-linux-gnu-gcc/bin/aarch64-linux-gnu-gcc)
-set(CMAKE_CXX_COMPILER /opt/linux/x86-arm/aarch64-v01c01-linux-gnu-gcc/bin/aarch64-linux-gnu-g++)
+set(CMAKE_C_COMPILER   "${TOOLCHAIN_ROOT}/bin/aarch64-linux-gnu-gcc")
+set(CMAKE_CXX_COMPILER "${TOOLCHAIN_ROOT}/bin/aarch64-linux-gnu-g++")
 
 # -----------------------------------------------------
 # 目标环境根路径
 # 用于查找 target 上的库和头文件
 # -----------------------------------------------------
-set(CMAKE_FIND_ROOT_PATH /opt/linux/x86-arm/aarch64-v01c01-linux-gnu-gcc)
+set(CMAKE_FIND_ROOT_PATH "${TOOLCHAIN_ROOT}")
 
 # -----------------------------------------------------
 # 查找模式
