@@ -13,7 +13,7 @@ int main()
     return 0;
   }
   std::cout << "Available serial ports:" << std::endl;
-  for (const auto& port : ports)
+  for (const auto &port : ports)
   {
     std::cout << "Port: " << port.port << " | Description: " << port.description
               << " | Hardware ID: " << port.hardware_id << std::endl;
@@ -48,7 +48,7 @@ int main()
     .setBaudRate(115200)
     .setTimeout(10)                                                           // 读超时 10ms
     .setReconnectLimit(3)                                                     // 最大重连 3 次
-    .setLogCallback([](SerialPort::LogLevel level, const std::string& msg) {  // 日志回调
+    .setLogCallback([](SerialPort::LogLevel level, const std::string &msg) {  // 日志回调
       std::string levelStr;
       switch (level)
       {
@@ -64,7 +64,7 @@ int main()
       }
       std::cout << levelStr << msg << std::endl;
     })
-    .setDataCallback([&log_file](const std::string& data) {
+    .setDataCallback([&log_file](const std::string &data) {
       for (unsigned char c : data)
       {
         log_file << std::hex << std::uppercase << (int)c << " ";

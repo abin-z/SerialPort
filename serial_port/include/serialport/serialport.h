@@ -95,10 +95,10 @@ class SerialPort
   };
 
   /// 数据接收回调函数类型（参数为接收到的字符串数据）
-  using DataCallback = std::function<void(const std::string&)>;
+  using DataCallback = std::function<void(const std::string &)>;
 
   /// 日志回调函数类型（参数为日志级别与消息内容）
-  using LogCallback = std::function<void(SerialPort::LogLevel, const std::string&)>;
+  using LogCallback = std::function<void(SerialPort::LogLevel, const std::string &)>;
 
  public:
   /**
@@ -111,7 +111,7 @@ class SerialPort
    * @param port 串口名称（如 "COM3" 或 "/dev/ttyUSB0"）
    * @param baudrate 波特率（如 9600、115200 等）
    */
-  SerialPort(const std::string& port, uint32_t baudrate);
+  SerialPort(const std::string &port, uint32_t baudrate);
 
   /**
    * @brief 析构函数，会自动关闭串口与停止读取线程
@@ -119,12 +119,12 @@ class SerialPort
   ~SerialPort();
 
   // 禁止复制
-  SerialPort(const SerialPort&) = delete;
-  SerialPort& operator=(const SerialPort&) = delete;
+  SerialPort(const SerialPort &) = delete;
+  SerialPort &operator=(const SerialPort &) = delete;
 
   // 禁止移动
-  SerialPort(SerialPort&&) noexcept = delete;
-  SerialPort& operator=(SerialPort&&) noexcept = delete;
+  SerialPort(SerialPort &&) noexcept = delete;
+  SerialPort &operator=(SerialPort &&) noexcept = delete;
 
   /**
    * @brief 列出系统中所有可用的串口 (静态方法)
@@ -137,42 +137,42 @@ class SerialPort
    * @param port 串口名称（如 "COM3" 或 "/dev/ttyUSB0"）
    * @return 返回自身引用以支持链式调用
    */
-  SerialPort& setPort(const std::string& port);
+  SerialPort &setPort(const std::string &port);
 
   /**
    * @brief 设置波特率
    * @param baudrate 波特率值
    * @return 返回自身引用以支持链式调用
    */
-  SerialPort& setBaudRate(uint32_t baudrate);
+  SerialPort &setBaudRate(uint32_t baudrate);
 
   /**
    * @brief 设置串口读取超时时间
    * @param timeout_ms 超时时间（毫秒）
    * @return 返回自身引用以支持链式调用
    */
-  SerialPort& setTimeout(uint32_t timeout_ms);
+  SerialPort &setTimeout(uint32_t timeout_ms);
 
   /**
    * @brief 设置自动重连最大次数
    * @param limit 重连次数上限（0 表示不重连）
    * @return 返回自身引用以支持链式调用
    */
-  SerialPort& setReconnectLimit(size_t limit);
+  SerialPort &setReconnectLimit(size_t limit);
 
   /**
    * @brief 设置数据接收回调函数
    * @param cb 回调函数，参数为接收到的数据字符串
    * @return 返回自身引用以支持链式调用
    */
-  SerialPort& setDataCallback(DataCallback cb);
+  SerialPort &setDataCallback(DataCallback cb);
 
   /**
    * @brief 设置日志输出回调函数
    * @param cb 回调函数，参数为日志级别与内容
    * @return 返回自身引用以支持链式调用
    */
-  SerialPort& setLogCallback(LogCallback cb);
+  SerialPort &setLogCallback(LogCallback cb);
 
   /**
    * @brief 打开串口并启动读线程
@@ -196,7 +196,7 @@ class SerialPort
    * @param data 要发送的字符串数据
    * @return 实际写入的字节数
    */
-  size_t write(const std::string& data);
+  size_t write(const std::string &data);
 
  private:
   /**
@@ -220,14 +220,14 @@ class SerialPort
    * @brief 从另一个 SerialPort 对象移动资源
    * @param other 另一个 SerialPort 对象
    */
-  void moveFrom(SerialPort& other) noexcept;
+  void moveFrom(SerialPort &other) noexcept;
 
   /**
    * @brief 输出日志消息（触发 log_cb_）
    * @param level 日志级别
    * @param msg 日志内容
    */
-  void logMsg(LogLevel level, const std::string& msg);
+  void logMsg(LogLevel level, const std::string &msg);
 
  private:
   serial::Serial serial_;            ///< serial 库的串口对象

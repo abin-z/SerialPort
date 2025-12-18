@@ -5,7 +5,7 @@
 
 #include "serialport/serialport.h"
 
-SerialPort::SerialPort(const std::string& port, uint32_t baudrate) : port_(port), baudrate_(baudrate) {}
+SerialPort::SerialPort(const std::string &port, uint32_t baudrate) : port_(port), baudrate_(baudrate) {}
 
 SerialPort::~SerialPort()
 {
@@ -19,41 +19,41 @@ std::vector<serial::PortInfo> SerialPort::listPorts()
 }
 
 /// @brief 设置串口端口名
-SerialPort& SerialPort::setPort(const std::string& port)
+SerialPort &SerialPort::setPort(const std::string &port)
 {
   port_ = port;
   return *this;
 }
 
 /// @brief 设置波特率
-SerialPort& SerialPort::setBaudRate(uint32_t baudrate)
+SerialPort &SerialPort::setBaudRate(uint32_t baudrate)
 {
   baudrate_ = baudrate;
   return *this;
 }
 
 /// @brief 设置串口读取超时时间, 单位毫秒
-SerialPort& SerialPort::setTimeout(uint32_t timeout_ms)
+SerialPort &SerialPort::setTimeout(uint32_t timeout_ms)
 {
   timeout_ms_ = timeout_ms;
   return *this;
 }
 
 /// @brief 设置自动重连最大次数
-SerialPort& SerialPort::setReconnectLimit(size_t limit)
+SerialPort &SerialPort::setReconnectLimit(size_t limit)
 {
   reconnect_max_ = limit;
   return *this;
 }
 
 /// @brief 设置数据接收回调
-SerialPort& SerialPort::setDataCallback(DataCallback cb)
+SerialPort &SerialPort::setDataCallback(DataCallback cb)
 {
   data_cb_ = std::move(cb);
   return *this;
 }
 /// @brief 设置日志输出回调
-SerialPort& SerialPort::setLogCallback(LogCallback cb)
+SerialPort &SerialPort::setLogCallback(LogCallback cb)
 {
   log_cb_ = std::move(cb);
   return *this;
@@ -91,7 +91,7 @@ bool SerialPort::open()
       return true;
     }
   }
-  catch (const std::exception& e)
+  catch (const std::exception &e)
   {
     logMsg(LogLevel::Warning, std::string("open exception: ") + e.what());
   }
@@ -111,7 +111,7 @@ bool SerialPort::open()
         return true;
       }
     }
-    catch (const std::exception& e)
+    catch (const std::exception &e)
     {
       logMsg(LogLevel::Warning, "Reconnect attempt " + std::to_string(attempt) + " failed: " + e.what());
     }
@@ -141,7 +141,7 @@ bool SerialPort::isOpen() const
 }
 
 /// @brief 向串口发送数据
-size_t SerialPort::write(const std::string& data)
+size_t SerialPort::write(const std::string &data)
 {
   std::lock_guard<std::mutex> lock(mtx_);
   if (!serial_.isOpen())
@@ -154,7 +154,7 @@ size_t SerialPort::write(const std::string& data)
   {
     return serial_.write(data);
   }
-  catch (const std::exception& e)
+  catch (const std::exception &e)
   {
     logMsg(LogLevel::Error, std::string("write exception: ") + e.what());
     return 0;
@@ -190,7 +190,7 @@ void SerialPort::readLoop()
       size_t n = serial_.read(buffer.data(), buffer.size());
       if (n > 0 && data_cb_)
       {
-        data_cb_(std::string(reinterpret_cast<const char*>(buffer.data()), n));
+        data_cb_(std::string(reinterpret_cast<const char *>(buffer.data()), n));
       }
       else if (n == 0)
       {
@@ -198,7 +198,7 @@ void SerialPort::readLoop()
         std::this_thread::sleep_for(std::chrono::milliseconds(5));
       }
     }
-    catch (const std::exception& e)
+    catch (const std::exception &e)
     {
       logMsg(LogLevel::Warning, std::string("read exception: ") + e.what());
       reconnect();
@@ -238,7 +238,7 @@ void SerialPort::reconnect()
 }
 
 /// @brief 内部日志输出
-void SerialPort::logMsg(LogLevel level, const std::string& msg)
+void SerialPort::logMsg(LogLevel level, const std::string &msg)
 {
   if (log_cb_)
   {
