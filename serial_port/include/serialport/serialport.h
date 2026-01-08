@@ -1,6 +1,15 @@
-#pragma once
-#ifndef SERIAL_PORT_H
-#define SERIAL_PORT_H
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2025 Abin
+
+/**
+ * @file serialport.h
+ * @brief 串口通信封装类
+ * @author abin
+ * @date 2025-09-30
+ */
+
+#ifndef __GUARD_SERIALPORT_H_INCLUDE_GUARD__
+#define __GUARD_SERIALPORT_H_INCLUDE_GUARD__
 
 /**
  * ================= SerialPort 使用最佳实践 =================
@@ -242,4 +251,4 @@ class SerialPort
   LogCallback log_cb_;               ///< 日志回调
 };
 
-#endif  // SERIAL_PORT_H
+#endif  // __GUARD_SERIALPORT_H_INCLUDE_GUARD__
