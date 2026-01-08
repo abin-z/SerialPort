@@ -67,7 +67,7 @@ int main()
     .setDataCallback([&log_file](const std::string &data) {
       for (unsigned char c : data)
       {
-        log_file << std::hex << std::uppercase << (int)c << " ";
+        log_file << std::hex << std::uppercase << static_cast<int>(c) << " ";
       }
       log_file.flush();                   // 保证立即写入文件
       log_file << std::dec << std::endl;  // 每条数据换行，并恢复十进制格式
