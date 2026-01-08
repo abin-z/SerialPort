@@ -87,7 +87,7 @@ class SerialPort
   /**
    * @brief 日志等级枚举
    */
-  enum class LogLevel
+  enum class LogLevel : uint8_t
   {
     Info,     ///< 一般信息
     Warning,  ///< 警告信息

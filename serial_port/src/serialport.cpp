@@ -190,7 +190,7 @@ void SerialPort::readLoop()
       size_t n = serial_.read(buffer.data(), buffer.size());
       if (n > 0 && data_cb_)
       {
-        data_cb_(std::string(reinterpret_cast<const char *>(buffer.data()), n));
+        data_cb_(std::string(static_cast<const char *>(static_cast<const void *>(buffer.data())), n));
       }
       else if (n == 0)
       {
