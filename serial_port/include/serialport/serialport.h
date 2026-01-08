@@ -111,7 +111,7 @@ class SerialPort
    * @param port 串口名称（如 "COM3" 或 "/dev/ttyUSB0"）
    * @param baudrate 波特率（如 9600、115200 等）
    */
-  SerialPort(const std::string &port, uint32_t baudrate);
+  SerialPort(std::string port, uint32_t baudrate);
 
   /**
    * @brief 析构函数，会自动关闭串口与停止读取线程

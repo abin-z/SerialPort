@@ -5,7 +5,7 @@
 
 #include "serialport/serialport.h"
 
-SerialPort::SerialPort(const std::string &port, uint32_t baudrate) : port_(port), baudrate_(baudrate) {}
+SerialPort::SerialPort(std::string port, uint32_t baudrate) : port_(std::move(port)), baudrate_(baudrate) {}
 
 SerialPort::~SerialPort()
 {
